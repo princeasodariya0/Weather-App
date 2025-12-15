@@ -10,7 +10,6 @@ export default function SearchBox({updateInfo}){
     const API_KEY = "13bab893c00b23970b792ff36ac100dd";
 
     let getWeatherInfo = async ()=> {
-        // eslint-disable-next-line no-useless-catch
         try {
         let response = await fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
         let jasonResponse = await response.json(); 
@@ -32,6 +31,7 @@ export default function SearchBox({updateInfo}){
 
     let handelCity = (evt)=>{
         setCity(evt.target.value);
+        setError(false)
     }
 
     let handleSubmit = async (event)=>{
@@ -41,7 +41,6 @@ export default function SearchBox({updateInfo}){
         setCity("")
         let newInfo = await getWeatherInfo();
         updateInfo(newInfo);
-        // eslint-disable-next-line no-unused-vars
         } catch (err){
             setError(true)
         }
